@@ -59,12 +59,25 @@ app.get('/login', function(req, res){
         });    
 });
 
+app.post('/login', function(req, res){
+    let user = req.body.user;
+    let pwd = req.body.pwd;
+    var sql = 'INSERT INTO `login`(`email`, `PASSWORD`) VALUES (\''+ user +'\',\''+ pwd +'\')';
+    console.log(sql);
+        con.query(sql, 
+        function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+          res.json(result);
+        });    
+});
+
 app.get('/json', function(req, res){
     res.json({firstname:'satyam', lastname:'kumar'});
 })
 
-app.listen(port, '127.0.0.1');
-
+//app.listen(port, '127.0.0.1');
+app.listen(port, '0.0.0.0');
 
 
 //var msg = 'Hello World!!!';
