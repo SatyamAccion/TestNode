@@ -72,6 +72,20 @@ app.post('/login', function(req, res){
         });    
 });
 
+app.post('/employee', function(req, res){
+    let name = req.body.name;
+    let phone = req.body.phone;
+    let shift = req.body.shift;
+    var sql = 'INSERT INTO `Employee`(`Name`, `Phone`, `Shift`) VALUES (\''+ name +'\',\''+ phone + '\',\''+ shift +'\')';
+    console.log(sql);
+        con.query(sql, 
+        function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+          res.json(result);
+        });    
+});
+
 app.get('/json', function(req, res){
     res.json({firstname:'satyam', lastname:'kumar'});
 })
